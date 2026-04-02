@@ -309,29 +309,37 @@ I enjoy supporting teams, managing tasks efficiently and contributing to environ
           <span>amaalucavellcare@gmail.com</span>
         </div>
       </div>
-      <div class="contact-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name *</label>
-            <input type="text" required/>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Email *</label>
-            <input type="email" />
-          </div>
-          <div class="form-group">
-            <label>Subject</label>
-            <input type="text" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea></textarea>
-        </div>
-        <button class="submit-btn">Submit</button>
-      </div>
+      <div id="form-success" data-fs-success style="display:none; padding: 2rem; background: var(--teal); border-radius: 8px; text-align: center; font-weight: 700;">
+  Thanks! Your message has been sent.
+</div>
+<div data-fs-error style="color: red; margin-bottom: 1rem; font-size: 0.9rem;"></div>
+
+<form id="contact-form-element">
+  <div class="form-row">
+    <div class="form-group">
+      <label>First Name *</label>
+      <input type="text" name="firstName" data-fs-field required/>
+      <span data-fs-error="firstName" style="color: red; font-size: 0.8rem;"></span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Email *</label>
+      <input type="email" name="email" data-fs-field required />
+      <span data-fs-error="email" style="color: red; font-size: 0.8rem;"></span>
+    </div>
+    <div class="form-group">
+      <label>Subject</label>
+      <input type="text" name="subject" data-fs-field />
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Message</label>
+    <textarea name="message" data-fs-field required></textarea>
+    <span data-fs-error="message" style="color: red; font-size: 0.8rem;"></span>
+  </div>
+  <button type="submit" class="submit-btn" data-fs-submit-btn>Submit</button>
+</form>
     </div>
   </section>
 
@@ -380,6 +388,19 @@ I enjoy supporting teams, managing tasks efficiently and contributing to environ
       });
     });
   </script>
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { 
+      formElement: '#contact-form-element', 
+      formId: 'xjgpewdw',
+      onSuccess: function() {
+        // Hide the form and show the success message
+        document.getElementById('contact-form-element').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }
+    });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
